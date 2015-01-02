@@ -1,13 +1,31 @@
 <div>
-    <div ng-repeat="product in products">
     <ul>
-    	<li>
-        <p>{{ product.name }} - {{ product.price | currency }} - {{ product.description }}</p>
-        <img ng-src="{{ product.images[0] }}" alt="">
-        <button ng-hide="product.soldOut" class='btn btn-primary'>Add to Cart</button>
-        <button ng-show="product.soldOut" class='btn btn-danger'>Sold Out!!!</button>
-        </li>
-
+        <div ng-repeat="product in products">
+            <li>
+            <p>{{ product.name }} - {{ product.price | currency }} - {{ product.description }}</p>
+            <img ng-src="{{ product.images[0] }}" alt="">
+            <button ng-hide="product.soldOut" class='btn btn-primary'>Add to Cart</button>
+            <button ng-show="product.soldOut" class='btn btn-danger'>Sold Out!!!</button>
+            </li>
+            <section ng-init="tab = 1">
+                <ul class="nav nav-pills">
+                    <li ng-class="{ active:tab === 1}"><a href ng-click="tab = 1">Description</a></li>
+                    <li ng-class="{ active:tab === 2}"><a href ng-click="tab = 2">Specifications</a></li>
+                    <li ng-class="{ active:tab === 3}"><a href ng-click="tab = 3">Reviews</a></li>
+                </ul>
+            </section>
+            <div id="panel" ng-show="tab == 1">
+                <h4>Description</h4>
+                <blockquote> {{ product.description }} </blockquote>
+            </div>
+            <div id="panel" ng-show="tab == 2">
+                <h4>Specification</h4>
+                <blockquote>Nothing yet</blockquote>
+            </div>
+            <div id="panel" ng-show="tab == 3">
+                <h4>Reviews</h4>
+                <blockquote>Nothing yet</blockquote>
+            </div>
+        </div>
     </ul>
-    </div>
 </div>
