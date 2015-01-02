@@ -10,17 +10,25 @@
 angular.module('gemstoreApp')
   .controller('MainCtrl', function ($scope) {
 
-    var gem1 = {
-      name: 'Dodecahedron',
-      price: 2.95,
-      description: 'Some description'
-    }
-    var gem2 = {
-      name: 'Tetrahedron',
-      price: 1.00,
-      description: 'Some tetra description'
-    }
+    var gems = [
+      {
+        name: 'Dodecahedron',
+        price: 2.95,
+        soldOut: false,
+        description: 'Some description'
+      }, {
+        name: 'Tetrahedron',
+        price: 1.00,
+        soldOut: true,
+        description: 'Some tetra description'
+      }, {
+        name: 'Quadrahedron',
+        price: 5.00,
+        soldOut: false,
+        description: 'Some tetra description'
+      }
+    ]
 
-    $scope.products = [gem1, gem2];
+    $scope.products = gems;
 
   });
