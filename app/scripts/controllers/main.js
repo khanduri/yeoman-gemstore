@@ -9,9 +9,18 @@
  */
 angular.module('gemstoreApp')
   .controller('MainCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+
+    var gem1 = {
+      name: 'Dodecahedron',
+      price: 2.95,
+      description: 'Some description'
+    }
+    var gem2 = {
+      name: 'Tetrahedron',
+      price: 1.00,
+      description: 'Some tetra description'
+    }
+
+    $scope.products = [gem1, gem2];
+
   });
