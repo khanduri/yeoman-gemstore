@@ -18,6 +18,17 @@ angular.module('gemstoreApp')
         images: [
           'http://dhg7upb7j7jqa.cloudfront.net/shaping_up_with_angular_js/assets/demo/images/gem-01.gif'
         ],
+        reviews:[
+          {
+            rating: 3,
+            body: 'this is ok',
+            author: 'u1'
+          }, {
+            rating: 4,
+            body: 'this is good',
+            author: 'u2'
+          }
+        ],
         description: 'Some description'
       }, {
         name: 'Tetrahedron',
@@ -25,6 +36,13 @@ angular.module('gemstoreApp')
         soldOut: true,
         images: [
           'http://dhg7upb7j7jqa.cloudfront.net/shaping_up_with_angular_js/assets/demo/images/gem-02.gif'
+        ],
+        reviews:[
+          {
+            rating: 1,
+            body: 'this is something really long .. and long ',
+            author: 'u3'
+          }
         ],
         description: 'Some tetra description'
       }, {
