@@ -7,55 +7,55 @@
             <button ng-hide="product.soldOut" class='btn btn-primary'>Add to Cart</button>
             <button ng-show="product.soldOut" class='btn btn-danger'>Sold Out!!!</button>
             </div>
-            <section ng-init="tab = 1">
+            <section ng-controller='PanelCtrl as panelCtrl'>
                 <ul class="nav nav-pills">
-                    <li ng-class="{ active:tab === 1}"><a href ng-click="tab = 1">Description</a></li>
-                    <li ng-class="{ active:tab === 2}"><a href ng-click="tab = 2">Specifications</a></li>
-                    <li ng-class="{ active:tab === 3}"><a href ng-click="tab = 3">Reviews</a></li>
+                    <li ng-class="{ active:panelCtrl.isSelected(1)}"><a href ng-click="panelCtrl.setSelected(1)">Description</a></li>
+                    <li ng-class="{ active:panelCtrl.isSelected(2)}"><a href ng-click="panelCtrl.setSelected(2)">Specifications</a></li>
+                    <li ng-class="{ active:panelCtrl.isSelected(3)}"><a href ng-click="panelCtrl.setSelected(3)">Reviews</a></li>
                 </ul>
+                <div id="panel" ng-show="panelCtrl.isSelected(1)">
+                    <h4>Description</h4>
+                    <blockquote> {{ product.description }} </blockquote>
+                </div>
+                <div id="panel" ng-show="panelCtrl.isSelected(2)">
+                    <h4>Specification</h4>
+                    <blockquote>Nothing yet</blockquote>
+                </div>
+                <div id="panel" ng-show="panelCtrl.isSelected(3)">
+                    <h4>Reviews</h4>
+                    <blockquote ng-repeat='review in product.reviews'>
+                        <b>{{review.rating}}</b>: {{review.body}}<br>
+                        <cite>by: {{review.author}}</cite>
+                    </blockquote>
+                    <form class='well' ng-controller='ReviewCtrl as reviewCtrl' ng-submit='reviewCtrl.addReview(product)'>
+                        <blockquote>
+                            <b>{{reviewCtrl.review.rating}}</b>: {{reviewCtrl.review.body}}<br>
+                            <cite>by: {{reviewCtrl.review.author}}</cite>
+                        </blockquote>
+                        <div class="row">
+                            <label>Rating: </label>
+                            <select ng-model='reviewCtrl.review.rating'>
+                                <option value='1'>1 Star</option>
+                                <option value='2'>2 Star</option>
+                                <option value='3'>3 Star</option>
+                                <option value='4'>4 Star</option>
+                                <option value='5'>5 Star</option>
+                            </select>
+                        </div>
+                        <div class="row">
+                            <label>Review: </label>
+                            <textarea ng-model='reviewCtrl.review.body'></textarea>
+                        </div>
+                        <div class="row">
+                            <label>By: </label>
+                            <input ng-model='reviewCtrl.review.author' type='email'/>
+                        </div>
+                        <div class="row">
+                            <input type='submit' class='btn btn-primary' value='Submit'/>
+                        </div>
+                    </form>
+                </div>
             </section>
-            <div id="panel" ng-show="tab == 1">
-                <h4>Description</h4>
-                <blockquote> {{ product.description }} </blockquote>
-            </div>
-            <div id="panel" ng-show="tab == 2">
-                <h4>Specification</h4>
-                <blockquote>Nothing yet</blockquote>
-            </div>
-            <div id="panel" ng-show="tab == 3">
-                <h4>Reviews</h4>
-                <blockquote ng-repeat='review in product.reviews'>
-                    <b>{{review.rating}}</b>: {{review.body}}<br>
-                    <cite>by: {{review.author}}</cite>
-                </blockquote>
-                <form class='well'>
-                <blockquote>
-                    <b>{{review.rating}}</b>: {{review.body}}<br>
-                    <cite>by: {{review.author}}</cite>
-                </blockquote>
-                <div class="row">
-                    <label>Rating: </label>
-                    <select ng-model='review.rating'>
-                        <option value='1'>1 Star</option>
-                        <option value='2'>2 Star</option>
-                        <option value='3'>3 Star</option>
-                        <option value='4'>4 Star</option>
-                        <option value='5'>5 Star</option>
-                    </select>
-                </div>
-                <div class="row">
-                    <label>Review: </label>
-                    <textarea ng-model='review.body'></textarea>
-                </div>
-                <div class="row">
-                    <label>By: </label>
-                    <input ng-model='review.author' type='email'/>
-                </div>
-                <div class="row">
-                    <input type='submit' class='btn btn-primary' value='Submit'/>
-                </div>
-                </form>
-            </div>
         </li>
     </ul>
 </div>
