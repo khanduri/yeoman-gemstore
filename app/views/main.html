@@ -1,65 +1,17 @@
 <div class='container'>
     <ul class="list-group">
         <li ng-repeat="product in products" class="list-group-item">
-            <div>
-            <p>{{ product.name }} - {{ product.price | currency }} - {{ product.description }}</p>
-            <img ng-src="{{ product.images[0] }}" alt="">
-            <button ng-hide="product.soldOut" class='btn btn-primary'>Add to Cart</button>
-            <button ng-show="product.soldOut" class='btn btn-danger'>Sold Out!!!</button>
+            <div class="row">
+                <h2 class="col-md-4 col-md-offset-4">{{ product.name }}</h2>
+                <h4>{{ product.price | currency }}</h4>
+                <img class="col-md-4 col-md-offset-4 img-circle" ng-src="{{ product.images[0] }}" alt="">
+                <button class="col-md-4 col-md-offset-4 btn btn-primary" ng-hide="product.soldOut">Add to Cart</button>
+                <div class="col-md-4 col-md-offset-4 alert alert-danger" ng-show="product.soldOut">Sold Out!!!</div>
             </div>
-            <section ng-controller='PanelCtrl as panelCtrl'>
-                <ul class="nav nav-pills">
-                    <li ng-class="{ active:panelCtrl.isSelected(1)}"><a href ng-click="panelCtrl.setSelected(1)">Description</a></li>
-                    <li ng-class="{ active:panelCtrl.isSelected(2)}"><a href ng-click="panelCtrl.setSelected(2)">Specifications</a></li>
-                    <li ng-class="{ active:panelCtrl.isSelected(3)}"><a href ng-click="panelCtrl.setSelected(3)">Reviews</a></li>
-                </ul>
-                <div class="panel" ng-show="panelCtrl.isSelected(1)">
-                    <h4>Description</h4>
-                    <blockquote> {{ product.description }} </blockquote>
-                </div>
-                <div class="panel" ng-show="panelCtrl.isSelected(2)">
-                    <h4>Specification</h4>
-                    <blockquote>Nothing yet</blockquote>
-                </div>
-                <div class="panel" ng-show="panelCtrl.isSelected(3)">
-                    <h4>Reviews</h4>
-                    <blockquote ng-repeat='review in product.reviews'>
-                        <b>{{review.rating}}</b>: {{review.body}}<br>
-                        <cite>by: {{review.author}}</cite>
-                    </blockquote>
-                    <form class='well'
-                                ng-controller='ReviewCtrl as reviewCtrl'
-                                ng-submit='reviewCtrl.$valid && reviewCtrl.addReview(product)'
-                                novalidate>
 
-                        <blockquote>
-                            <b>{{reviewCtrl.review.rating}}</b>: {{reviewCtrl.review.body}}<br>
-                            <cite>by: {{reviewCtrl.review.author}}</cite>
-                        </blockquote>
-                        <div class="form-group">
-                            <label>Rating: </label>
-                            <select class="form-control" ng-model='reviewCtrl.review.rating' required>
-                                <option value='1'>1 Star</option>
-                                <option value='2'>2 Star</option>
-                                <option value='3'>3 Star</option>
-                                <option value='4'>4 Star</option>
-                                <option value='5'>5 Star</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Review: </label>
-                            <textarea class="form-control" ng-model='reviewCtrl.review.body' required></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label>By: </label>
-                            <input class="form-control" ng-model='reviewCtrl.review.author' type='email' required />
-                        </div>
-                        <div class="form-group">
-                            <input type='submit' class='btn btn-primary' value='Submit'/>
-                        </div>
-                    </form>
-                </div>
-            </section>
+            <br>
+
+            <div ng-include="'views/template-panel.html'"></div>
         </li>
     </ul>
 </div>

@@ -52,7 +52,7 @@ angular.module('gemstoreApp')
         images: [
           'http://dhg7upb7j7jqa.cloudfront.net/shaping_up_with_angular_js/assets/demo/images/gem-03.gif'
         ],
-        description: 'Some tetra description'
+        description: 'Some Quadra description'
       }
     ]
 
