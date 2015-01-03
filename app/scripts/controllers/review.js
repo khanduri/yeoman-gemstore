@@ -10,7 +10,7 @@
 angular.module('gemstoreApp')
   .controller('ReviewCtrl', function ($scope) {
 
-    this.review = {};
+    this.review = {rating:5};
 
     this.addReview = function(product){
       product.reviews.push(this.review);
