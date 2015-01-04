@@ -5,7 +5,6 @@
         <cite>by: {{review.author}}</cite>
     </blockquote>
     <form class='well'
-                ng-controller='ReviewCtrl as reviewCtrl'
                 ng-submit='reviewCtrl.$valid && reviewCtrl.addReview(product)'
                 novalidate>
         <blockquote>
